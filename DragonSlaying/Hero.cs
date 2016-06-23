@@ -8,34 +8,38 @@ namespace DragonSlaying
 {
     public class Hero
     {
-        public string Name { get; set; }
+        public string Name;
+        // public string Name { get; set; }
         public int Offense { get; set; }
         public int Defense { get; set; }
         public int MaxHitPoints { get; set; }
-        // TODO: Add any necessary fields
+        // TODO: Add any necessary variables/properties
 
         private int _hitPoints;
-        public int GetHitPoints()
-        {
-            return _hitPoints;
-        }
-        // enforce the rule that hitpoints can't be less than 0
-        public void SetHitPoints(int value)
-        {
-            if (value < 0)
-            {
-                _hitPoints = 0;
-            }
-            else
-            {
-                _hitPoints = value;
-            }
-        }
 
         /// <summary>
         /// Keeps track of the number of hit points a Hero has. Cannot be less than 0
         /// (if a negative number is passed in, HitPoints will be set to 0 instead).
         /// </summary>
+        public int HitPoints
+        {
+            get
+            {
+                return _hitPoints;
+            }
+            set // whatever they try to set it to is put in a variable called `value`
+                // public void set(int value)
+            {
+                if (value < 0)
+                {
+                    _hitPoints = 0;
+                }
+                else
+                {
+                    _hitPoints = value;
+                }
+            }
+        }
 
         /// <summary>
         /// Returns a nicely formatted string that includes the current status of the Hero.
@@ -55,7 +59,7 @@ namespace DragonSlaying
             sb.AppendLine(Name);
             sb.AppendLine("==========");
             sb.AppendFormat("Off: {0}\tDef: {1}\n", Offense, Defense);
-            sb.AppendFormat("HP: {0}/{1}\n", GetHitPoints(), MaxHitPoints);
+            sb.AppendFormat("HP: {0}/{1}\n", HitPoints, MaxHitPoints);
 
             return sb.ToString();
         }
@@ -68,7 +72,7 @@ namespace DragonSlaying
         /// <returns>true if the Hero is alive, false if they are not</returns>
         public bool IsAlive()
         {
-            if (GetHitPoints() > 0)
+            if (HitPoints > 0)
             {
                 return true;
             }

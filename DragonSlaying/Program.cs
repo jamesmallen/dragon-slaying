@@ -14,7 +14,7 @@ namespace DragonSlaying
             Offense = 4,
             Defense = 2,
             MaxHitPoints = 25,
-            // HitPoints = 25,
+            HitPoints = 25,
         };
 
         static Dragon MyEnemy = new Dragon
@@ -43,7 +43,8 @@ namespace DragonSlaying
 
 
 
-            MyHero.SetHitPoints(-50);
+            // MyHero.HitPoints = -50;
+            // SetHitPoints(-50)
             Console.WriteLine(MyHero);
 
             Console.WriteLine("VERSUS");
