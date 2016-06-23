@@ -14,7 +14,7 @@ namespace DragonSlaying
             Offense = 4,
             Defense = 2,
             MaxHitPoints = 25,
-            HitPoints = 25,
+            // HitPoints = 25,
         };
 
         static Dragon MyEnemy = new Dragon
@@ -42,12 +42,13 @@ namespace DragonSlaying
             Die sixSidedDied = new Die(6);
 
 
+
+            MyHero.SetHitPoints(-50);
             Console.WriteLine(MyHero);
 
             Console.WriteLine("VERSUS");
 
             Console.WriteLine(MyEnemy);
-
 
             while (MyHero.IsAlive())
             {

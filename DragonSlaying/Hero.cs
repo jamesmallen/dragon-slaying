@@ -13,23 +13,29 @@ namespace DragonSlaying
         public int Defense { get; set; }
         public int MaxHitPoints { get; set; }
         // TODO: Add any necessary fields
-        
+
+        private int _hitPoints;
+        public int GetHitPoints()
+        {
+            return _hitPoints;
+        }
+        // enforce the rule that hitpoints can't be less than 0
+        public void SetHitPoints(int value)
+        {
+            if (value < 0)
+            {
+                _hitPoints = 0;
+            }
+            else
+            {
+                _hitPoints = value;
+            }
+        }
+
         /// <summary>
         /// Keeps track of the number of hit points a Hero has. Cannot be less than 0
         /// (if a negative number is passed in, HitPoints will be set to 0 instead).
         /// </summary>
-        public int HitPoints
-        {
-            get
-            {
-                // TODO
-                throw new NotImplementedException();
-            }
-            set
-            {
-                // TODO
-            }
-        }
 
         /// <summary>
         /// Returns a nicely formatted string that includes the current status of the Hero.
@@ -44,8 +50,14 @@ namespace DragonSlaying
         /// <returns></returns>
         public override string ToString()
         {
-            // TODO
-            return "";
+            var sb = new StringBuilder();
+
+            sb.AppendLine(Name);
+            sb.AppendLine("==========");
+            sb.AppendFormat("Off: {0}\tDef: {1}\n", Offense, Defense);
+            sb.AppendFormat("HP: {0}/{1}\n", GetHitPoints(), MaxHitPoints);
+
+            return sb.ToString();
         }
 
 
@@ -56,8 +68,14 @@ namespace DragonSlaying
         /// <returns>true if the Hero is alive, false if they are not</returns>
         public bool IsAlive()
         {
-            // TODO
-            return true;
+            if (GetHitPoints() > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>
