@@ -16,6 +16,9 @@ namespace DragonSlaying
         /// </summary>
         public Die() : this(6)
         {
+            // we could have done it this way, but instead we are using this(6):
+            //random = new Random();
+            //NumberOfSides = 6;
         }
 
         /// <summary>
@@ -24,7 +27,8 @@ namespace DragonSlaying
         /// <param name="numberOfSides">The number of sides on the Die</param>
         public Die(int numberOfSides)
         {
-            // TODO
+            NumberOfSides = numberOfSides;
+            random = new Random();
         }
 
         /// <summary>
@@ -34,7 +38,7 @@ namespace DragonSlaying
         public int Roll()
         {
             // TODO
-            return 1;
+            return random.Next(1, NumberOfSides + 1);
         }
     }
 }
